@@ -1,2 +1,18 @@
-    <h1>Adnat</h1>
-    <p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </p>
+<h1>Adnat</h1>
+
+<p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </p>
+
+<p>You aren't a member of any organisations. Join an existing one or create a new one</p>
+
+<h2>Organisations</h2>
+<ul>
+  <% @organisations.each do |organisation| %>
+    <li>
+      <%= organisation.name %>
+      <%= link_to 'Edit', edit_organisation_path(organisation) %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Create Organisation</h2>
+<%= render 'shared/createform', organisation: @organisation %>
