@@ -11,7 +11,7 @@ class OrganisationsController < ApplicationController
   def update
     @organisation = Organisation.find(params[:id])
     @organisation.update(organisation_params)
-    # redirect_to
+    redirect_to organisations_path
   end
 
   def edit
