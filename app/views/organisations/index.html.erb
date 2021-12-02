@@ -10,8 +10,7 @@
     <li>
       <%= organisation.name %>
       <%= link_to 'Edit', edit_organisation_path(organisation) %>
-      <%# <%= link_to 'Join',  %>
-      <%# <%raise%>
+      <%= link_to 'Join', organisation_path(organisation) %>
     </li>
   <% end %>
 </ul>

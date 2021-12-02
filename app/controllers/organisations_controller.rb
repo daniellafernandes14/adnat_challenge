@@ -19,7 +19,8 @@ class OrganisationsController < ApplicationController
   end
 
   def show
-    @organisation = Organisation.new
+    @organisation = Organisation.find(params[:id])
+    current_user.organisation_id = @organisation.id
   end
 
   def index
@@ -30,6 +31,7 @@ class OrganisationsController < ApplicationController
   def destroy
     @organisation = Organisation.find(params[:id])
     @organisation.destroy
+    current_user.organisation_id = nil
     redirect_to organisations_path
   end
 
