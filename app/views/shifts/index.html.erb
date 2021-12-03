@@ -1,0 +1,39 @@
+<h1>Adnat</h1>
+
+<p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </p>
+
+<h2><%= @organisation.name %></h2>
+
+<h5>Shifts</h5>
+<table>
+  <tr>Employee Name</tr>
+    <% @shifts.each do |shift| %>
+      <td><%= shift.user_id %></td>
+    <% end %>
+  <tr>Shift Date</tr>
+    <% @shifts.each do |shift| %>
+      <td><%= shift.start %></td>
+    <% end %>
+  <tr>Start Time</tr>
+    <% @shifts.each do |shift| %>
+      <td><%= shift.start %></td>
+    <% end %>
+  <tr>Finish Time</tr>
+    <% @shifts.each do |shift| %>
+      <td><%= shift.finish %></td>
+    <% end %>
+  <tr>Break Length (minutes)</tr>
+    <% @shifts.each do |shift| %>
+      <td><%= shift.break_length %></td>
+    <% end %>
+  <tr>Hours Worked</tr>
+    <% hours_worked = @shifts.each do |shift| %>
+      <td><%= shift.start - shift.finish %></td>
+    <% end %>
+  <tr>Shift Cost</tr>
+    <% @shifts.each do |shift| %>
+      <td><%= hours_worked * @organisation.hourly_rate %></td>
+    <% end %>
+</table>
+
+<%= render 'shared/shiftform', shift: @shift %>
