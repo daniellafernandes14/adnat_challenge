@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :organisations, only: %i[destroy create update edit show index] do
    resources :shifts, only: %i[create new index]
   end
+  resources :shifts, only: [:destroy]
 end

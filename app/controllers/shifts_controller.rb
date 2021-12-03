@@ -1,8 +1,8 @@
 class ShiftsController < ApplicationController
   def create
-    @shift = Shift.new(shift_params)
     @organisation = Organisation.find(params[:organisation_id])
-    @shift.user_id = current_user
+    @shift = Shift.new(shift_params)
+    @shift.user_id = current_user.id
     if @shift.save
       redirect_to organisation_shifts_path(@organisation)
     else
@@ -22,6 +22,6 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
-    params.require(:shift).permit(:start, :finish, :break_length)
+    params.require(:shift).permit(:start, :finish, :break_length, :user_id)
   end
 end
