@@ -3,7 +3,7 @@ class OrganisationsController < ApplicationController
   def create
     @organisation = Organisation.new(organisation_params)
     @organisation.save
-    redirect_to organisations_path
+    redirect_to organisation_path(@organisation)
     # @organisation = Organisation.find(@organisation_id)
     @organisation = current_user.organisation_id
   end
@@ -26,6 +26,7 @@ class OrganisationsController < ApplicationController
   def index
     @organisations = Organisation.all
     @organisation = Organisation.new
+    current_user.organisation_id = @organisation.id
   end
 
   def destroy

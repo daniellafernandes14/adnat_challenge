@@ -2,7 +2,11 @@
 
 <p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </p>
 
-<p>You aren't a member of any organisations. Join an existing one or create a new one</p>
+<% if current_user.organisation_id == nil %>
+  <p>You aren't a member of any organisations. Join an existing one or create a new one</p>
+<% end %>
+
+<%= current_user.organisation_id %>
 
 <h2>Organisations</h2>
 <ul>
@@ -13,6 +17,7 @@
       <%= link_to 'Join', organisation_path(organisation) %>
     </li>
   <% end %>
+  <%# <%raise%> %>
 </ul>
 
 <h2>Create Organisation</h2>
