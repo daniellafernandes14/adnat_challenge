@@ -1,4 +1,4 @@
 class Shift < ApplicationRecord
-  has_many :users, through: :organisations
-  belongs_to :organisation, dependent: :destroy
+  has_many :users
+  validates :start, :finish, :break_length, presence: true
 end

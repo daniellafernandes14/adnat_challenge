@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_150659) do
+ActiveRecord::Schema.define(version: 2021_12_04_110644) do
 
   create_table "organisations", force: :cascade do |t|
     t.string "name"
@@ -45,4 +45,5 @@ ActiveRecord::Schema.define(version: 2021_12_01_150659) do
   end
 
   add_foreign_key "shifts", "users"
+  add_foreign_key "users", "organisations"
 end

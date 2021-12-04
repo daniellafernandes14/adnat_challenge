@@ -14,10 +14,9 @@
     <li>
       <%= organisation.name %>
       <%= link_to 'Edit', edit_organisation_path(organisation) %>
-      <%= link_to 'Join', organisation_path(organisation) %>
+      <%= link_to 'Join', user_registration_path, method: :patch %>
     </li>
   <% end %>
-  <%# <%raise%> %>
 </ul>
 
 <h2>Create Organisation</h2>
