@@ -11,7 +11,7 @@ class ShiftsController < ApplicationController
   end
 
   def index
-    @shifts = Shift.all
+    @shifts = Shift.all.order(start: :asc)
     @shift = Shift.new
     @organisation = Organisation.find(params[:organisation_id])
   end

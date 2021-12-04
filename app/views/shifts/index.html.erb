@@ -6,34 +6,26 @@
 
 <h5>Shifts</h5>
 <table>
-  <tr>Employee Name</tr>
-    <% @shifts.each do |shift| %>
+  <tr>
+    <th>Employee Name</th>
+    <th>Shift Date</th>
+    <th>Start Time</th>
+    <th>Finish Time</th>
+    <th>Break Length (minutes)</th>
+    <th>Hours Worked</th>
+    <th>Shift Cost</th>
+  </tr>
+  <% @shifts.each do |shift| %>
+    <tr>
       <td><%= shift.user.name %></td>
-    <% end %>
-  <tr>Shift Date</tr>
-    <% @shifts.each do |shift| %>
-      <td><%= shift.start %></td>
-    <% end %>
-  <tr>Start Time</tr>
-    <% @shifts.each do |shift| %>
-      <td><%= shift.start %></td>
-    <% end %>
-  <tr>Finish Time</tr>
-    <% @shifts.each do |shift| %>
-      <td><%= shift.finish %></td>
-    <% end %>
-  <tr>Break Length (minutes)</tr>
-    <% @shifts.each do |shift| %>
+      <td><%= shift.start.strftime("%d/%m/%Y") %></td>
+      <td><%= shift.start.strftime("%I:%M%p") %></td>
+      <td><%= shift.finish.strftime("%I:%M%p") %></td>
       <td><%= shift.break_length %></td>
-    <% end %>
-  <tr>Hours Worked</tr>
-    <% hours_worked = @shifts.each do |shift| %>
-      <td><%= shift.start - shift.finish %></td>
-    <% end %>
-  <tr>Shift Cost</tr>
-    <% @shifts.each do |shift| %>
-      <td><%= hours_worked * @organisation.hourly_rate %></td>
-    <% end %>
+      <td><%= hours_worked = ((((shift.finish - shift.start) / 60) - shift.break_length) / 60).round(2) %></td>
+      <td>$<%= hours_worked * @organisation.hourly_rate %></td>
+    </tr>
+  <% end %>
 </table>
 
 <%= render 'shared/shiftform', organisation: @organisation, shift: @shift %>
