@@ -1,4 +1,4 @@
 class Shift < ApplicationRecord
-  has_many :users
+  belongs_to :user
   validates :start, :finish, :break_length, presence: true
 end

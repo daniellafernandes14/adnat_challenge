@@ -8,7 +8,7 @@
 <table>
   <tr>Employee Name</tr>
     <% @shifts.each do |shift| %>
-      <td><%= shift.user_id %></td>
+      <td><%= shift.user.name %></td>
     <% end %>
   <tr>Shift Date</tr>
     <% @shifts.each do |shift| %>
