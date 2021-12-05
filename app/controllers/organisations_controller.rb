@@ -33,6 +33,7 @@ class OrganisationsController < ApplicationController
 
   def leave
     current_user.organisation_id = nil
+    current_user.shifts.destroy_all
     current_user.save
     redirect_to organisations_path
   end
