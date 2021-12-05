@@ -25,7 +25,7 @@ class OrganisationsController < ApplicationController
 
   def update
     @organisation.update(organisation_params)
-    redirect_to organisations_path
+    redirect_to organisation_path(@organisation)
   end
 
   def edit
