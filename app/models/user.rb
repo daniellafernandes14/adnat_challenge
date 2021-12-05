@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :shifts
-  belongs_to :organisation
+  belongs_to :organisation, optional: true
 end

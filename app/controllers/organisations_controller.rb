@@ -23,6 +23,19 @@ class OrganisationsController < ApplicationController
     current_user.organisation_id = @organisation.id
   end
 
+  def leave
+    current_user.organisation_id = nil
+    current_user.save
+    redirect_to organisations_path
+  end
+
+  def join
+    @organisation = Organisation.find(params[:id])
+    current_user.organisation_id = @organisation.id
+    current_user.save
+    redirect_to organisation_path(@organisation)
+  end
+
   def index
     @organisations = Organisation.all
     @organisation = Organisation.new
@@ -39,6 +52,6 @@ class OrganisationsController < ApplicationController
   private
 
   def organisation_params
-    params.require(:organisation).permit(:name, :hourly_rate)
+    params.require(:organisation).permit(:name, :hourly_rate, :id)
   end
 end

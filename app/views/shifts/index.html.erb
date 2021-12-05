@@ -16,15 +16,17 @@
     <th>Shift Cost</th>
   </tr>
   <% @shifts.each do |shift| %>
-    <tr>
-      <td><%= shift.user.name %></td>
-      <td><%= shift.start.strftime("%d/%m/%Y") %></td>
-      <td><%= shift.start.strftime("%I:%M%p") %></td>
-      <td><%= shift.finish.strftime("%I:%M%p") %></td>
-      <td><%= shift.break_length %></td>
-      <td><%= hours_worked = ((((shift.finish - shift.start) / 60) - shift.break_length) / 60).round(2) %></td>
-      <td>$<%= hours_worked * @organisation.hourly_rate %></td>
-    </tr>
+    <% if shift.user.organisation.name == @organisation.name %>
+      <tr>
+        <td><%= shift.user.name %></td>
+        <td><%= shift.start.strftime("%d/%m/%Y") %></td>
+        <td><%= shift.start.strftime("%I:%M%p") %></td>
+        <td><%= shift.finish.strftime("%I:%M%p") %></td>
+        <td><%= shift.break_length %></td>
+        <td><%= hours_worked = ((((shift.finish - shift.start) / 60) - shift.break_length) / 60).round(2) %></td>
+        <td>$<%= hours_worked * @organisation.hourly_rate %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 
