@@ -16,6 +16,13 @@ class OrganisationsController < ApplicationController
     redirect_to organisation_path(@organisation)
   end
 
+  def leave
+    current_user.organisation_id = nil
+    current_user.shifts.destroy_all
+    current_user.save
+    redirect_to organisations_path
+  end
+
   def update
     @organisation = Organisation.find(params[:id])
     @organisation.update(organisation_params)
@@ -30,14 +37,6 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.find(params[:id])
     current_user.organisation_id = @organisation.id
   end
-
-  def leave
-    current_user.organisation_id = nil
-    current_user.shifts.destroy_all
-    current_user.save
-    redirect_to organisations_path
-  end
-
 
   def index
     @organisations = Organisation.all

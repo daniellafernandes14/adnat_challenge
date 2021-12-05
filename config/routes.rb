@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     member do
       patch :leave, :join
     end
-   resources :shifts, only: %i[create index]
+   resources :shifts, only: %i[create index destroy]
   end
-  resources :shifts, only: [:destroy]
 end

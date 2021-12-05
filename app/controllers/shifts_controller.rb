@@ -14,6 +14,12 @@ class ShiftsController < ApplicationController
     @organisation = Organisation.find(params[:organisation_id])
   end
 
+  def destroy
+    shift = Shift.find(params[:id])
+    shift.destroy
+    redirect_to organisation_shifts_path
+  end
+
   private
 
   def shift_params
