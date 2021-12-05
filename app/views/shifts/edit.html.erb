@@ -1,0 +1,8 @@
+<%# <%= render 'shared/editshiftform', organisation: @organisation, shift: @shift %> %>
+
+<%= simple_form_for [ @organisation, @shift ] do |f| %>
+  <%= f.input :start %>
+  <%= f.input :finish %>
+  <%= f.input :break_length %>
+  <%= f.submit value: 'Update shift' %>
+<% end %>

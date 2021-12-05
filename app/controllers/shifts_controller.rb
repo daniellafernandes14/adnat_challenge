@@ -20,6 +20,17 @@ class ShiftsController < ApplicationController
     redirect_to organisation_shifts_path
   end
 
+  def edit
+    @shift = Shift.find(params[:id])
+    @organisation = Organisation.find(params[:organisation_id])
+  end
+
+  def update
+    @shift = Shift.find(params[:id])
+    @shift.update(shift_params)
+    redirect_to organisation_shifts_path
+  end
+
   private
 
   def shift_params

@@ -26,7 +26,8 @@
         <td><%= shift.break_length %></td>
         <td><%= hours_worked = ((((shift.finish - shift.start) / 60) - shift.break_length) / 60).round(2) %></td>
         <td>$<%= hours_worked * @organisation.hourly_rate %></td>
-      <td><%= link_to 'Delete', organisation_shift_path(@organisation, shift), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to 'Delete', organisation_shift_path(@organisation, shift), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <td><%= link_to 'Edit', edit_organisation_shift_path(@organisation, shift) %></td>
       </tr>
     <% end %>
   <% end %>
