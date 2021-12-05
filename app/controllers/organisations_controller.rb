@@ -4,8 +4,16 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.new(organisation_params)
     @organisation.save
     redirect_to organisation_path(@organisation)
-    # @organisation = Organisation.find(@organisation_id)
-    @organisation = current_user.organisation_id
+    @organisation = Organisation.find(@organisation.id)
+    current_user.organisation_id = @organisation.id
+    current_user.save
+  end
+
+  def join
+    @organisation = Organisation.find(params[:id])
+    current_user.organisation_id = @organisation.id
+    current_user.save
+    redirect_to organisation_path(@organisation)
   end
 
   def update
@@ -29,12 +37,6 @@ class OrganisationsController < ApplicationController
     redirect_to organisations_path
   end
 
-  def join
-    @organisation = Organisation.find(params[:id])
-    current_user.organisation_id = @organisation.id
-    current_user.save
-    redirect_to organisation_path(@organisation)
-  end
 
   def index
     @organisations = Organisation.all
@@ -52,6 +54,6 @@ class OrganisationsController < ApplicationController
   private
 
   def organisation_params
-    params.require(:organisation).permit(:name, :hourly_rate, :id)
+    params.require(:organisation).permit(:name, :hourly_rate, :organisation_id)
   end
 end
