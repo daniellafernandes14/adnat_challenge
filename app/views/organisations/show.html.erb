@@ -1,9 +1,8 @@
 <h1>Adnat</h1>
 
-<p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </p>
+<p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> <%= link_to 'Home', organisations_path %></p>
 
 <h2><%= @organisation.name %></h2>
 <%= link_to 'View Shifts', organisation_shifts_path(@organisation) %>
 <%= link_to 'Edit', edit_organisation_path(@organisation) %>
 <%= link_to 'Leave', leave_organisation_path, method: :patch, data: { confirm: "Are you sure?" } %>
-<%= link_to 'Back', organisations_path %>

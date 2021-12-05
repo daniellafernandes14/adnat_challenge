@@ -1,9 +1,10 @@
 <h1>Adnat</h1>
 
-<p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </p>
+<p>Logged in as <%= current_user.name %> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> <%= link_to "Edit Profile", edit_user_registration_path %></p>
 
 <% if current_user.organisation_id == nil %>
   <p>You aren't a member of any organisations. Join an existing one or create a new one</p>
+  <%#raise %>
 <% end %>
 
 <%= current_user.organisation_id %>
@@ -14,7 +15,6 @@
     <li>
       <%= organisation.name %>
       <%= link_to 'Edit', edit_organisation_path(organisation) %>
-      <%#= link_to 'Join', user_registration_path, method: :patch %>
       <%= link_to 'Join', join_organisation_path(organisation), method: :patch %>
     </li>
   <% end %>

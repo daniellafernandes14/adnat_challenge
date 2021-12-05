@@ -8,9 +8,6 @@ class ShiftsController < ApplicationController
     redirect_to organisation_shifts_path(@organisation)
   end
 
-  def new
-  end
-
   def index
     @shifts = Shift.all.order(start: :asc)
     @shift = Shift.new
