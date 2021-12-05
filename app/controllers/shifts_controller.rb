@@ -1,6 +1,8 @@
 class ShiftsController < ApplicationController
+  before_action :set_organisation, only: [:create, :index, :edit]
+  before_action :set_shift, only: [:destroy, :edit, :update]
+
   def create
-    @organisation = Organisation.find(params[:organisation_id])
     @shift = Shift.new(shift_params)
     @shift.user_id = current_user.id
     @shift.user.organisation = current_user.organisation
@@ -11,27 +13,30 @@ class ShiftsController < ApplicationController
   def index
     @shifts = Shift.all.order(start: :asc)
     @shift = Shift.new
-    @organisation = Organisation.find(params[:organisation_id])
   end
 
   def destroy
-    shift = Shift.find(params[:id])
     shift.destroy
     redirect_to organisation_shifts_path
   end
 
   def edit
-    @shift = Shift.find(params[:id])
-    @organisation = Organisation.find(params[:organisation_id])
   end
 
   def update
-    @shift = Shift.find(params[:id])
     @shift.update(shift_params)
     redirect_to organisation_shifts_path
   end
 
   private
+
+  def set_shift
+    @shift = Shift.find(params[:id])
+  end
+
+  def set_organisation
+    @organisation = Organisation.find(params[:organisation_id])
+  end
 
   def shift_params
     params.require(:shift).permit(:start, :finish, :break_length, :organisation_id)

@@ -1,4 +1,5 @@
 class OrganisationsController < ApplicationController
+  before_action :set_organisation, only: [:join, :update, :edit, :show, :destroy]
 
   def create
     @organisation = Organisation.new(organisation_params)
@@ -10,7 +11,6 @@ class OrganisationsController < ApplicationController
   end
 
   def join
-    @organisation = Organisation.find(params[:id])
     current_user.organisation_id = @organisation.id
     current_user.save
     redirect_to organisation_path(@organisation)
@@ -24,17 +24,14 @@ class OrganisationsController < ApplicationController
   end
 
   def update
-    @organisation = Organisation.find(params[:id])
     @organisation.update(organisation_params)
     redirect_to organisations_path
   end
 
   def edit
-    @organisation = Organisation.find(params[:id])
   end
 
   def show
-    @organisation = Organisation.find(params[:id])
     current_user.organisation_id = @organisation.id
   end
 
@@ -45,13 +42,16 @@ class OrganisationsController < ApplicationController
   end
 
   def destroy
-    @organisation = Organisation.find(params[:id])
     @organisation.destroy
     current_user.organisation_id = nil
     redirect_to organisations_path
   end
 
   private
+
+  def set_organisation
+    @organisation = Organisation.find(params[:id])
+  end
 
   def organisation_params
     params.require(:organisation).permit(:name, :hourly_rate, :organisation_id)
