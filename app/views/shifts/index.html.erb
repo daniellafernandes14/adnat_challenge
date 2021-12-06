@@ -17,7 +17,7 @@
     <th>Shift Cost</th>
   </tr>
   <% @shifts.each do |shift| %>
-    <% if shift.user.organisation.name == @organisation.name %>
+    <% if shift.user.organisation == @organisation %>
       <tr>
         <td><%= shift.user.name %></td>
         <td><%= shift.start.strftime("%d/%m/%Y") %></td>

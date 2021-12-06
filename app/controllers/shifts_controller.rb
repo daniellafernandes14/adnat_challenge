@@ -16,7 +16,7 @@ class ShiftsController < ApplicationController
   end
 
   def destroy
-    shift.destroy
+    @shift.destroy
     redirect_to organisation_shifts_path
   end
 
